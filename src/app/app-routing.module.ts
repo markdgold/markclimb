@@ -1,16 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-// import { HomeComponent } from './home/home.component';
-import { InstagramComponent } from './instagram/instagram.component';
 import { VimeoComponent } from './vimeo/vimeo.component';
 
 const routes: Routes = [
   { path: 'about', loadChildren: 'app/home/home.module#HomeModule' },
   { path: '', redirectTo: 'about', pathMatch: 'full'},
-  { path: 'instagram', component: InstagramComponent },
+  { path: 'instagram', loadChildren: 'app/instagram/instagram.module#InstagramModule' },
   { path: 'vimeo', component: VimeoComponent },
-  // { path: '**', component: HomeComponent}
+  { path: '**', redirectTo: 'about', pathMatch: 'full'}
 ];
 
 @NgModule({
@@ -18,4 +16,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [InstagramComponent, VimeoComponent] 
+export const routingComponents = [VimeoComponent] 
