@@ -11,13 +11,14 @@ export class AppComponent implements OnInit {
   title = 'mdg';
   isMobileFlag: boolean;
 
-  constructor(private formatService: FormatService) {};
-
-  ngOnInit() {
-    if (window.screen.availWidth <= 1024) {
-      this.formatService.isMobile = true;
+  constructor(private formatService: FormatService) {
+  };
+  
+  ngOnInit() { 
+    if (window.screen.availWidth < 1025) {
+      this.formatService.updateFlag(true);
     } else {
-      this.formatService.isMobile = false;
+      this.formatService.updateFlag(false);
     }
   }
 }
