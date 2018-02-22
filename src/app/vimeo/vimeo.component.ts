@@ -16,6 +16,7 @@ export class VimeoComponent implements OnInit {
   vimeoList: Ivimeopost[];
   video: Object;
   handle: string = "/markdgold";
+  link: string = "https://www.vimeo.com/markdgold"
   constructor(private vimeoService: VimeoService) {}
 
   ngOnInit() {
