@@ -16,6 +16,7 @@ declare var $:any;
 export class InstagramComponent implements OnInit {
   handle: string = "@markdgold";
   images: Iinstapost[];
+  link: string = "https://www.instagram.com/markdgold"
 
   constructor(private instagramService: InstagramService, private formatService: FormatService ) {
     formatService.getFlag('insta').subscribe(flag => {})
