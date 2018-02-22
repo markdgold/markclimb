@@ -24,7 +24,7 @@ export class InstagramService {
       .map(data => {return data.json().data})
   }
   getUserMedia(): Observable<Iinstapost[]> {
-    let userMediaUrl = 'https://api.instagram.com/v1/users/'+this.userId+'/media/recent/?access_token='+this.instaToken;
+    let userMediaUrl = 'https://api.instagram.com/v1/users/'+this.userId+'/media/recent/?access_token='+this.instaToken+'&count=8';
     return this.http.get(userMediaUrl)
       .map(data => {return data.json().data})
   }
