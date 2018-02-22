@@ -17,11 +17,10 @@ export class NavBarComponent implements OnInit {
   subscription: Subscription;
 
   constructor(private router: Router, private formatService: FormatService) {
-    this.subscription = formatService.getFlag('header').subscribe(flag => {console.log('flag',flag); this.isMobile = flag});
+    this.subscription = formatService.getFlag('header').subscribe(flag => {this.isMobile = flag});
   }
   
   ngOnInit() {
-    console.log('~~~loading head')
     this.router.events.subscribe((event: any) => {
       if (event.url === "/about"){
         this.isAbout = true;
@@ -29,7 +28,6 @@ export class NavBarComponent implements OnInit {
         this.isAbout = false;
       }
     })
-    console.log('header flag', this.isMobile)
     $('ul.right').hover( //fix this
       ()=>{
         $('div.header h1.desktop').css('padding-right', '57px');

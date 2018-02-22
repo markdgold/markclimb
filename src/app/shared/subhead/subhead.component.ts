@@ -24,14 +24,4 @@ export class SubheadComponent implements OnInit {
   ngOnInit(){
     this.checkMobile();
   }
-  // constructor(private formatService: FormatService) {
-  //   this.subscription = this.formatService.getFlag('subhead').subscribe(flag => {console.log('flag',flag); this.isMobile = flag});
-  // }
-  // ngOnInit() {
-  //   console.log('~~~~~~~loading subhead')
-  //   console.log('isMobile', this.isMobile);
-  // }
-  // ngOnDestroy(){
-  //   this.subscription.unsubscribe();
-  // }
 }

@@ -13,7 +13,6 @@ export class SponsorsComponent implements OnInit {
   ngOnInit() {
     if (window.screen.availWidth <= 770) {
       this.mobile = true;
-      console.log('mobile');
     }
   }
 

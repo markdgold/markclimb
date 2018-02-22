@@ -20,20 +20,17 @@ export class VimeoService {
   }
 
   getVimeoLinks(): Observable<Ivimeopost[]> {
-    console.log('getting videos')
     let headers = new Headers();
     headers.append('Authorization', this.token);
     let opts = new RequestOptions();
     opts.headers = headers;
     return this.http.get(this.allVidUrl, opts)
       .map(data => {
-        console.log(data.json().data)
         return data.json().data.map(video => {
           let newObj = {
             'title': video.name,
             'id': video.link.slice(18),
           };
-          console.log(newObj);
           return newObj
         });
       })

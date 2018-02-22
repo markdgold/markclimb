@@ -44,7 +44,6 @@ export class ContactFormComponent implements OnInit {
     })
   }
   onSubmit() {
-    console.log(this.contactForm.value);
     this.contactForm.reset();
     this.thanks = 'show';
     setTimeout(()=>{this.thanks="hide"}, 2000)
