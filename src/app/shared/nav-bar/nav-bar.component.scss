@@ -1,0 +1,89 @@
+@import "../../../styles";
+
+$nav-height: 38px;
+
+.navbar-fixed{
+  height: $nav-height;
+  position: fixed;
+  z-index: 200;
+  nav{
+    height: $nav-height;
+    box-shadow: none;
+    background-color: $darkgrey;
+    .nav-wrapper{
+      .brand-logo{ 
+        line-height: $nav-height+6;
+        font-size: 24px;
+        padding-left: 35px;
+        letter-spacing: 7px;
+        color: $offwhite;
+      }
+      ul{
+        background: $darkgrey;
+        position: relative;
+        top: -26px;
+        transition: top .3s;
+        &:before{
+          content: '';
+          position: absolute;
+          top: $nav-height - 1;
+          right: 238px;
+          border-top: 27px solid $darkgrey;
+          border-left: 45px solid transparent;
+        }
+        &.desktop:hover{
+          top: 0px;
+          li{
+            a{
+              top: 0px;
+            }
+          }
+        }
+        li{
+          line-height: 60px;
+          &.about{
+            width: 71px;
+          }
+          &.ig{
+            width: 96px;
+          }
+          &.vimeo{
+            width: 72px;
+          }
+          a{
+            border-top: 4px solid $darkgrey;
+            transition: border-top .3s, top .3s, color .3s;
+            font-size: 16px;
+            font-weight: bolder;
+            color: $offwhite;
+            position: relative;
+            top: 12px;
+          }
+          &.active{
+            background: none;
+            a{
+              border-top: 4px solid $gold;
+              color: $gold;
+            }
+          }
+          a:hover{
+            background-color: rgba(0,0,0,0) !important;
+            border-top: 4px solid $gold;            
+            color: $gold;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .navbar-fixed nav .nav-wrapper .brand-logo{
+    left: 0;
+    transform: translateX(0);
+    padding-left: 10px;
+  }
+  ul:before{
+    display: none;
+  }
+}

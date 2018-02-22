@@ -1,0 +1,6 @@
+<div id="modal" [class.active]="active" (click)="closeModal()">
+  <div *ngIf="imageData" class="modal-container valign-wrapper">
+    <iframe id="iframe" [src]=modalUrl() frameborder="0" [style.width.px]="iframeWidth()" [style.height.px]="iframeHeight()"></iframe>
+  </div>
+
+</div>

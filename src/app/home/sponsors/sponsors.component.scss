@@ -1,0 +1,56 @@
+@import "../../../styles";
+
+
+.sponsors{
+  background: $lightgrey;
+  margin-bottom: 50px;
+  .container{
+    height: 100%;
+    div{
+      margin: 0 auto;
+      h1{
+        text-transform: uppercase;
+        color: white;
+        margin-top: 30px;
+        letter-spacing: 10px;
+      }
+      .logos{
+        display: inline-block;
+        background: white;
+        a{
+          img{
+            width: 637px;
+            display: block;
+            padding: 10px;
+            &.beast{
+              background: white;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .sponsors{
+    .container{
+      div{
+        h1{
+          font-size: 42px;
+        }
+        .logos{
+          a{
+            img{
+              width: 100px;
+              height: 100px;
+              &.beast{
+                border-radius: 70px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

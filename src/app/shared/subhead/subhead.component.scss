@@ -1,0 +1,49 @@
+@import "../../../styles";
+
+.header{
+  position: relative;
+  margin-bottom: 30px;
+  height: 80px;
+  text-align: right;
+  h1{
+    position: absolute;
+    padding-top: 10px;
+    right: 212px;
+    font-size: 50px;
+    background-color: $lightgrey;
+    margin: 0;
+    // padding-right: 64px;
+    transition: padding-right .3s;
+    width: 5000px;
+    display: inline-block;
+    text-align: right;
+    a {
+      color: $offwhite;
+    }
+    &:before{
+      content: '';
+      position:absolute;
+      top: 0px;
+      right: -57px;
+      border-top: 64px solid $lightgrey;
+      border-right: 57px solid transparent;
+    }
+  }
+}
+
+@media (max-width: 511px) {
+  .header{
+    height: 30px;
+    h1{
+      width: 47%;
+      padding: 9px 0 3px 10px;
+      font-size: 24px;
+      left: 0;
+      &:before{
+        right: -38px;
+        border-top: 38px solid $lightgrey;
+        border-right: 38px solid transparent;
+      }
+    }
+  }
+}

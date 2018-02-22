@@ -1,0 +1,57 @@
+@import "../../../styles";
+
+.about{
+  background: $offwhite;
+  .info{
+    margin-top: 100px;
+    p {
+      margin-left: 50px;
+      font-size: 18px;
+      text-align: justify;
+      font-weight: bolder;
+      color: black;
+    }
+  }
+  .image{
+    padding-right: 0px;
+    height: 100%;
+    img{
+      float: right;
+      height: 100%;
+    }
+
+  }
+}
+
+@media (max-width: 1024px) {
+  .about{
+    .info{
+      width: 100%;
+      margin-top: 0px;
+      height: 100%;
+      padding-top: 20px;
+      background: rgba(0,0,0,.3);
+      position: absolute;
+      z-index: 1;
+      p{
+        margin-left: 0px;
+        color: $offwhite;
+      }
+    }
+    .image{
+      width: 100%;
+      position: absolute;
+      overflow: hidden;
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .about{
+    .image{
+      img{
+        float: left;
+      }
+    }
+  }
+}

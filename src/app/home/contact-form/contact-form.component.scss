@@ -1,0 +1,78 @@
+@import "../../../styles";
+
+.btn-success{
+  background: transparent;
+  border: 1px solid black;
+  border-radius: 0px;
+  box-shadow: none;
+  color: black;
+  font-weight: bolder;
+  font-size: 18px;
+  &:hover{
+    border: 1px solid $gold;
+    color: $gold;
+  }
+}
+
+.hidden{
+  visibility: hidden;
+}
+
+.active{
+  visibility: visible;
+}
+
+.form-wrapper{
+  margin-left: 50px;
+  text-align: center;
+  .contact-btn-mobile{
+    border: 2px solid $offwhite;
+    color: $offwhite;
+  }
+  form{
+    text-align: left;
+    .form-group{
+      &.name-group, &.email-group{
+        input{
+          height: 1.9rem;
+        }
+      }
+      .center-block{
+        font-weight: bolder;
+        font-size: 18px;
+        color: black;
+        span{
+          color: red;
+        }
+        input:focus{
+          border-bottom: 1px solid $gold;
+          box-shadow: 0 1px 0 0 $gold;
+        }
+        textarea{
+          max-width: 100%;
+          min-width: 100%;
+          max-height: 150px;
+        }
+      }
+    }
+    .submit-btn{
+      margin-left: .75rem;
+      &:disabled{
+        background-color: transparent !important;
+        color: lightgrey;
+        border-color: lightgrey;
+      }
+    }
+    span{
+      color: black;
+      font-size: 18px;
+      font-weight: bolder;
+    }
+  }
+}
+
+@media (max-width: 800px){
+  .form-wrapper{
+    margin-left: 0px;
+  }
+}

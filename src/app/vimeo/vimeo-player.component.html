@@ -1,0 +1,7 @@
+<div *ngIf="video">
+  <h3>{{video.title}}</h3>
+  <div class="vimeo-iframe-wrapper">
+    <iframe [src]="videoUrl()" frameborder="0" title="{{video.title}}" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+  </div>
+</div>
+<!-- <hr> -->

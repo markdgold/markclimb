@@ -1,0 +1,34 @@
+@import "../../styles";
+
+.loading{
+  height: 1000px;
+  color: black;
+}
+main{
+  background: $offwhite;
+  position: relative;
+  width: 100%;
+  top: -10px;
+  padding-top: 8px;
+  padding-bottom: 20px;
+  div{
+    color: black;
+    width: 850px;
+    margin: 0 auto;
+  }
+  h2 {
+    text-align: center;
+    a {
+      color: black;
+      &:hover{
+        color: $gold;
+      }
+    } 
+  }
+}
+
+@media (max-width: 911px) {
+  main div{
+    width: 100%;
+  }
+}

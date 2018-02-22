@@ -1,0 +1,10 @@
+<main>
+  <subhead [handle]="handle"></subhead>  
+  <div class="loading" *ngIf="!vimeoList">
+    <h3>Loading videos...</h3>
+  </div>
+  <div>
+    <vimeo-player *ngFor='let video of vimeoList' [video]="video"></vimeo-player>
+    <h2><a href="http://www.vimeo.com/markdgold" target="_blank">View more on Vimeo</a></h2>
+  </div>
+</main>

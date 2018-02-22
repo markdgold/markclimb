@@ -1,0 +1,21 @@
+<div class="full-height sponsors row">
+  <div class="container valign-wrapper">
+    <div class="center-align">
+      <h1>Sponsors</h1>
+      <div class="logos">
+        <a href="https://www.beastfingersclimbing.com" target="_blank">
+          <img *ngIf="mobile;else desktopBeast" class="beast" src="/assets/images/beast_mobile.jpg" alt="beast">
+          <ng-template #desktopBeast><img class="beast" src="/assets/images/beast.png" alt="beast"></ng-template>
+        </a>
+        <!-- <a href="https://www.evolvsports.com" target="_blank">  
+          <img *ngIf="mobile; else desktopEvolv" src="/assets/images/evolv_mobile.gif" alt="evolv">
+          <ng-template #desktopEvolv><img src="/assets/images/evolv.jpg" alt="evolv"></ng-template>
+        </a> -->
+        <a href="https://www.frictionlabs.com" target="_blank">
+          <img *ngIf="mobile; else desktopFL" src="/assets/images/fl_mobile.png" alt="friction">
+          <ng-template #desktopFL><img src="/assets/images/frictionlabs.png" alt="friction"></ng-template>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

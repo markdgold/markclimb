@@ -1,0 +1,50 @@
+@import "../../../styles";
+
+.hero{
+  background: none;
+  video{
+    width: 2800px;
+    transform: translate(-21%, -19%);
+    position: fixed;
+    z-index: -2;
+  }
+  .video-overlay{
+    top: 0px;
+    padding-top: 1px;
+    color: $offwhite;
+    text-align: center;
+    width: 100%;
+    background: rgba(0,0,0,.2);
+    height: 104%;
+    
+    h1{
+      font-size: 67px;
+      width: 100%;
+      letter-spacing: 40px;
+    }
+  }
+}
+
+@media (max-width: 1025px) {
+  .hero{
+    video{
+      height: 100%;
+      transform: translate(-25%, 0%);
+    }
+  }
+}
+@media (max-width: 700px) {
+  .hero{
+    video{
+      transform: translate(-48%, 0%);
+    }
+    .video-overlay{
+      h1{
+        padding: 0 10px;
+        text-align: center;
+        font-size: 55px;
+        letter-spacing: 14px;
+      }
+    }
+  }
+}

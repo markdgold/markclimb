@@ -1,0 +1,19 @@
+<div class="navbar-fixed" [style.position]="isAbout ? 'fixed' : 'relative'">
+  <nav>
+    <div class="nav-wrapper">
+      <span class="brand-logo">MDG</span>
+      <ul class="right" [class.desktop]="!isMobile">
+        <li routerLinkActive="active" class="about">
+          <a [routerLink]="['/about']">About</a>
+        </li>
+        <li routerLinkActive="active" class="ig">
+          <a [routerLink]="['/instagram']">Instagram</a>
+        </li>
+        <li routerLinkActive="active" class="vimeo">
+          <a [routerLink]="['/vimeo']">Vimeo</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+</div>

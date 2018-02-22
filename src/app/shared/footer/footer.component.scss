@@ -1,0 +1,50 @@
+@import "../../../styles";
+
+$height: 50px;
+.footer-home{
+  position: fixed;
+  bottom: 0;
+  z-index: -2;
+  visibility: hidden;
+}
+nav{
+  height: $height;
+  box-shadow: none;
+  background-color: $darkgrey;
+  position: relative;
+  margin-top: -15px;
+  .nav-wrapper{
+    .brand-logo{
+      padding-left: 5px;
+      line-height: $height;
+      font-size: 16px;
+    }
+    .right{
+      li{
+        line-height: $height;
+        a{
+          font-size: 16px;
+          transition: font-size .2s;
+          i.fa{
+            height: $height;
+            line-height: $height;
+          }
+        }
+        a:hover{
+          background-color: rgba(0,0,0,0) !important;
+          font-size: 25px;
+          font-weight: bolder;
+          color: $gold;
+          line-height: 30px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .nav-wrapper .brand-logo{
+    left: 0;
+    transform: translateX(0);
+  }
+}

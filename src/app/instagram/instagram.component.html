@@ -1,0 +1,14 @@
+<main>
+  <subhead [handle]="handle" [link]="link"></subhead>
+  <div class="wrapper">  
+    <div class="isLoading">
+      <h3>Loading...</h3>
+    </div>
+    <mdg-insta-modal #modal></mdg-insta-modal>
+    
+    <div id="insta-feed">
+      <insta-square *ngFor="let image of images" [imageData]="image" [imageUrl]=image.images.standard_resolution.url [embedLink]=image.link (onSquareClick)="modal.openModal($event)"></insta-square>
+    </div>
+    <h2><a href="http://instagram.com/markdgold" target="_blank">View more on Instagram</a></h2>
+  </div>
+</main>

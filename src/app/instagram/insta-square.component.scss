@@ -1,0 +1,35 @@
+@import "../../styles";
+
+.insta-square-container{
+  display: inline-block;
+  margin: 6px;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  background: $lightgrey;
+  position: relative;
+  &:hover{
+    .likes{
+      z-index: 10;
+      visibility: visible;
+      height: 100%;
+      padding-top: 132px;
+      font-size: 28px;
+      width: 100%;
+      background: rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+    .insta-square-image{
+      transform: scale(1.3);
+    }
+  }
+  .likes{
+    position:absolute;
+    visibility: hidden;
+  }
+  .insta-square-image{
+    height: 100%;
+    transform: scale(1.5);
+    transition: .5s ease;
+  }
+}
