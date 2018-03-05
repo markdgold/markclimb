@@ -16,7 +16,17 @@ export class VimeoService {
   private token: string;
 
   constructor(private http: Http, private globals: Globals) { 
-    this.token = globals.token
+    this.token = globals.token;
+    let headers = new Headers();
+    headers.append('Accept',"application/vnd.heroku+json; version=3");
+    let opts = new RequestOptions();
+    opts.headers = headers;
+
+    this.http.get('http://api.heroku.com/apps/markclimb/config-vars', opts)
+      .map(data => {
+        console.log(data);
+        return data
+      })
   }
 
   getVimeoLinks(): Observable<Ivimeopost[]> {

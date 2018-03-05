@@ -17,6 +17,7 @@ export class InstagramService {
 
   constructor(private http: Http, private globals: Globals) { 
     this.instaToken = globals.instaToken
+    
   }
   getUserInfo(): Observable<any> {
     let userInfoUrl = 'https://api.instagram.com/v1/users/'+this.userId+'/?access_token='+this.instaToken;
