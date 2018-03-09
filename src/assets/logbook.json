@@ -1,0 +1,13 @@
+[
+  {"Grade":"V2","freq":{"Flash":7, "Second Go":3, "Redpoint":6}}
+  ,{"Grade":"V3","freq":{"Flash":14, "Second Go":3, "Redpoint":2}}
+  ,{"Grade":"V4","freq":{"Flash":8, "Second Go":7, "Redpoint":5}}
+  ,{"Grade":"V5","freq":{"Flash":3, "Second Go":4, "Redpoint":8}}
+  ,{"Grade":"V6","freq":{"Flash":4, "Second Go":0, "Redpoint":14}}
+  ,{"Grade":"V7","freq":{"Flash":1, "Second Go":0, "Redpoint":20}}
+  ,{"Grade":"V8","freq":{"Flash":3, "Second Go":0, "Redpoint":15}}
+  ,{"Grade":"V9","freq":{"Flash":18, "Second Go":2, "Redpoint":13}}
+  ,{"Grade":"V10","freq":{"Flash":0, "Second Go":1, "Redpoint":8}}
+  ,{"Grade":"V11","freq":{"Flash":0, "Second Go":0, "Redpoint":3}}
+  ,{"Grade":"V12","freq":{"Flash":0, "Second Go":0, "Redpoint":2}}
+]

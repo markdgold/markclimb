@@ -15,7 +15,7 @@ export class FooterComponent implements OnInit {
 
   ngOnInit() {
     this.router.events.subscribe((event: any) => {
-      if (event.url === "/about"){
+      if (event.url === "/about" || event.url === "/"){
         this.isHome = true;
       } else {
         this.isHome = false;
