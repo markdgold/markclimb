@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+declare var $: any;
+
 @Component({
   selector: 'mdg-hero',
   templateUrl: './hero.component.html',
@@ -10,6 +12,7 @@ export class HeroComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $('#hero-vid').prop('muted',true);
   }
 
 }

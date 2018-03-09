@@ -21,4 +21,7 @@ export class AppComponent implements OnInit {
       this.formatService.updateFlag(false);
     }
   }
+  ngAfterViewInit(){
+    window.scrollTo(0,0);
+  }
 }
