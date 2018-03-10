@@ -84,7 +84,7 @@ export class LogbookComponent implements OnInit {
     // function to handle histogram.
     function histoGram(fD){
       
-        var hG = {}; 
+        var hG:{update:any} = {update:""}; 
         var hGDim = {t: 60, r: 0, b: 30, l: -3, w:500, h:100};
         hGDim.w = 500 - hGDim.l - hGDim.r, 
         hGDim.h = 300 - hGDim.t - hGDim.b;
@@ -170,7 +170,7 @@ export class LogbookComponent implements OnInit {
     
     // function to handle pieChart.
     function pieChart(pD){
-        var pC = {};    
+        var pC:{update:any} = {update:""};    
         var pieDim:{w:number; h:number; r:number} ={w:250, h: 250, r: 0};
         pieDim.r = Math.min(pieDim.w, pieDim.h) / 2;
                 
@@ -221,7 +221,7 @@ export class LogbookComponent implements OnInit {
     
     // function to handle legend.
     function legend(lD){
-        var leg = {};
+        var leg:{update:any} = {update:""};
             
         // create table for legend.
         var legend = d3.select(id).append("table").attr('class','legend');
