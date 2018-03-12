@@ -1,13 +1,13 @@
 [
-  {"Grade":"V2","count":{"Flash":7, "Second Go":3, "Redpoint":6}}
-  ,{"Grade":"V3","count":{"Flash":14, "Second Go":3, "Redpoint":2}}
+  {"Grade":"V2","count":{"Flash":10, "Second Go":3, "Redpoint":6}}
+  ,{"Grade":"V3","count":{"Flash":14, "Second Go":3, "Redpoint":4}}
   ,{"Grade":"V4","count":{"Flash":8, "Second Go":7, "Redpoint":5}}
   ,{"Grade":"V5","count":{"Flash":3, "Second Go":4, "Redpoint":8}}
-  ,{"Grade":"V6","count":{"Flash":4, "Second Go":0, "Redpoint":14}}
+  ,{"Grade":"V6","count":{"Flash":0, "Second Go":0, "Redpoint":14}}
   ,{"Grade":"V7","count":{"Flash":1, "Second Go":0, "Redpoint":20}}
   ,{"Grade":"V8","count":{"Flash":3, "Second Go":0, "Redpoint":15}}
-  ,{"Grade":"V9","count":{"Flash":18, "Second Go":2, "Redpoint":13}}
-  ,{"Grade":"V10","count":{"Flash":0, "Second Go":1, "Redpoint":8}}
-  ,{"Grade":"V11","count":{"Flash":0, "Second Go":0, "Redpoint":3}}
-  ,{"Grade":"V12","count":{"Flash":0, "Second Go":0, "Redpoint":2}}
+  ,{"Grade":"V9","count":{"Flash":0, "Second Go":2, "Redpoint":13}}
+  ,{"Grade":"V10","count":{"Flash":0, "Second Go":1, "Redpoint":10}}
+  ,{"Grade":"V11","count":{"Flash":0, "Second Go":0, "Redpoint":1}}
+  ,{"Grade":"V12","count":{"Flash":0, "Second Go":0, "Redpoint":1}}
 ]
