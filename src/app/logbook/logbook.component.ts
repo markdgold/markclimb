@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LogbookService } from './logbook.service';
+
 declare var d3:any;
 
 @Component({
@@ -147,7 +148,6 @@ export class LogbookComponent implements OnInit {
         
         // create function to update the bars. This will be used by pie-chart.
         hG.update = function(nD, color){
-            console.log('updating hG');
             // update the domain of the y-axis map to reflect change in grades.
             y.domain([0, d3.max(nD, function(d) { return d[1]; })]);
             
@@ -160,7 +160,7 @@ export class LogbookComponent implements OnInit {
                 .attr("height", function(d) { return hGDim.h - y(d[1]); })
                 .attr("fill", color);
 
-            // transition the countuency labels location and change value.
+            // transition the count labels location and change value.
             bars.select("text").transition().duration(500)
                 .text(function(d){ return d3.format(",")(d[1])})
                 .attr("y", function(d) {return y(d[1])-5; });            
