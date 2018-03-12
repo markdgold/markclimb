@@ -77,14 +77,14 @@ export class LogbookComponent implements OnInit {
   dashboard(id, fData){
     var barColor = '#3c3c3c';
     // compute total for each Grade.
-    fData.forEach(function(d){d.total=d.freq.Flash+d.freq["Second Go"]+d.freq.Redpoint;});
+    fData.forEach(function(d){d.total=d.count.Flash+d.count["Second Go"]+d.count.Redpoint;});
 
     function segColor(c){ return {Flash:"#E89C04", "Second Go":"#9F9F9F",Redpoint:"#A2592C"}[c]; }
     
     // function to handle histogram.
     function histoGram(fD){
       
-        var hG:{update:any} = {update:""}; 
+        var hG:{update:any} = {update:()=>{}}; 
         var hGDim = {t: 60, r: 0, b: 30, l: -3, w:500, h:100};
         hGDim.w = 500 - hGDim.l - hGDim.r, 
         hGDim.h = 300 - hGDim.t - hGDim.b;
@@ -109,7 +109,7 @@ export class LogbookComponent implements OnInit {
         var y = d3.scale.linear().range([hGDim.h, 0])
                 .domain([0, d3.max(fD, function(d) { return d[1]; })]);
 
-        // Create bars for histogram to contain rectangles and freq labels.
+        // Create bars for histogram to contain rectangles and grade labels.
         var bars = hGsvg.selectAll(".bar").data(fD).enter()
                 .append("g").attr("class", "bar");
         
@@ -123,7 +123,7 @@ export class LogbookComponent implements OnInit {
             .on("mouseover",mouseover)// mouseover is defined beFlash.
             .on("mouseout",mouseout);// mouseout is defined beFlash.
             
-        //Create the frequency labels above the rectangles.
+        //Create the count labels above the rectangles.
         bars.append("text").text(function(d){ return d3.format(",")(d[1])})
             .attr("x", function(d) { return x(d[0])+x.rangeBand()/2; })
             .attr("y", function(d) { return y(d[1])-5; })
@@ -132,7 +132,7 @@ export class LogbookComponent implements OnInit {
         function mouseover(d){  // utility function to be called on mouseover.
             // filter for selected Grade.
             var st = fData.filter(function(s){ return s.Grade == d[0];})[0],
-                nD = d3.keys(st.freq).map(function(s){ return {type:s, freq:st.freq[s]};});
+                nD = d3.keys(st.count).map(function(s){ return {type:s, count:st.count[s]};});
                
             // call update functions of pie-chart and legend.    
             pC.update(nD);
@@ -148,7 +148,7 @@ export class LogbookComponent implements OnInit {
         // create function to update the bars. This will be used by pie-chart.
         hG.update = function(nD, color){
             console.log('updating hG');
-            // update the domain of the y-axis map to reflect change in frequencies.
+            // update the domain of the y-axis map to reflect change in grades.
             y.domain([0, d3.max(nD, function(d) { return d[1]; })]);
             
             // Attach the new data to the bars.
@@ -160,7 +160,7 @@ export class LogbookComponent implements OnInit {
                 .attr("height", function(d) { return hGDim.h - y(d[1]); })
                 .attr("fill", color);
 
-            // transition the frequency labels location and change value.
+            // transition the countuency labels location and change value.
             bars.select("text").transition().duration(500)
                 .text(function(d){ return d3.format(",")(d[1])})
                 .attr("y", function(d) {return y(d[1])-5; });            
@@ -184,7 +184,7 @@ export class LogbookComponent implements OnInit {
         var arc = d3.svg.arc().outerRadius(pieDim.r - 10).innerRadius(0);
 
         // create a function to compute the pie slice angles.
-        var pie = d3.layout.pie().sort(null).value(function(d) { return d.freq; });
+        var pie = d3.layout.pie().sort(null).value(function(d) { return d.count; });
 
         // Draw the pie slices.
         piesvg.selectAll("path").data(pie(pD)).enter().append("path").attr("d", arc)
@@ -201,7 +201,7 @@ export class LogbookComponent implements OnInit {
         function mouseover(d){
             // call the update function of histogram with new data.
             hG.update(fData.map(function(v){ 
-                return [v.Grade,v.freq[d.data.type]];}),segColor(d.data.type));
+                return [v.Grade,v.count[d.data.type]];}),segColor(d.data.type));
         }
         //Utility function to be called on mouseout a pie slice.
         function mouseout(d){
@@ -238,8 +238,8 @@ export class LogbookComponent implements OnInit {
         tr.append("td").text(function(d){ return d.type;});
 
         // create the third column for each segment.
-        tr.append("td").attr("class",'legendFreq')
-            .text(function(d){ return d3.format(",")(d.freq);});
+        tr.append("td").attr("class",'legendcount')
+            .text(function(d){ return d3.format(",")(d.count);});
 
         // create the fourth column for each segment.
         tr.append("td").attr("class",'legendPerc')
@@ -250,26 +250,26 @@ export class LogbookComponent implements OnInit {
             // update the data attached to the row elements.
             var l = legend.select("tbody").selectAll("tr").data(nD);
 
-            // update the frequencies.
-            l.select(".legendFreq").text(function(d){ return d3.format(",")(d.freq);});
+            // update the grades.
+            l.select(".legendcount").text(function(d){ return d3.format(",")(d.count);});
 
             // update the percentage column.
             l.select(".legendPerc").text(function(d){ return getLegend(d,nD);});        
         }
         
         function getLegend(d,aD){ // Utility function to compute percentage.
-            return d3.format("%")(d.freq/d3.sum(aD.map(function(v){ return v.freq; })));
+            return d3.format("%")(d.count/d3.sum(aD.map(function(v){ return v.count; })));
         }
 
         return leg;
     }
     
-    // calculate total frequency by segment for all Grade.
+    // calculate total count by segment for all Grade.
     var tF = ['Flash','Second Go','Redpoint'].map(function(d){ 
-      return {type:d, freq: d3.sum(fData.map(function(t){ return t.freq[d];}))}; 
+      return {type:d, count: d3.sum(fData.map(function(t){ return t.count[d];}))}; 
     });    
   
-    // calculate total frequency by Grade for all segment.
+    // calculate total count by Grade for all segment.
     var sF = fData.map(function(d){return [d.Grade,d.total];});
 
     var hG = histoGram(sF), // create the histogram.
