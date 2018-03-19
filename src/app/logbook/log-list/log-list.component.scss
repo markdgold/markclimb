@@ -1,0 +1,59 @@
+table{
+  color: black;
+  thead{
+    display: block;
+    th{
+      padding: 10px 10px;
+      &.bold{
+        text-decoration: underline;
+      }
+    }
+    th:nth-of-type(1){
+      width: 36px;
+    }
+    th:nth-of-type(2){
+      width: 153px;
+    }
+    th:nth-of-type(3){
+      width: 94px;
+    }
+    th:nth-of-type(4){
+      width: 79px;
+    }
+    th:nth-of-type(5){
+      width: 113px;
+    }
+  }
+  tbody{
+    display: block;
+    height: 501px;
+    overflow-y: scroll;
+    color: black;
+    tr{
+      td{
+        padding: 5px 10px;
+      }
+      .Flash{
+        fill: #E89C04
+      }
+      .Second{
+        fill: #9F9F9F;
+      }
+      .Redpoint{
+        fill: #A2592C;
+      }
+      td:nth-of-type(2){
+        width: 153px;
+      }
+      td:nth-of-type(3){
+        width: 94px;
+      }
+      td:nth-of-type(4){
+        width: 79px;
+      }
+      td:nth-of-type(5){
+        width: 113px;
+      }
+    }
+  }
+}

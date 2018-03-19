@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LogbookService } from './logbook.service';
+import { LogListComponent } from './log-list/log-list.component';
 
 declare var d3:any;
 
@@ -12,22 +13,31 @@ declare var d3:any;
       background: #fefff6;
     }
     h1 {
-      color: black;
-      margin-top: 0px;
-      padding-top: 30px;
-      text-align: center;
+        color: black;
+        margin-top: 0px;
+        padding-top: 30px;
+        text-align: center;
     }
     #bodyWrapper{
-      width: 1020px;
-      margin: 0 auto;
+        width: 1007px;
+        margin: 0 auto;
+    }
+    #dashboard{
+        width: 504px;
+        display: inline-block;
+    }
+    .log-list{
+        border: 2px solid black;
+        display: inline-block;
+        height: 548px;
+        width: 500px;
+        float: right;
     }
     :host>>>path {  stroke: #fff; }
     :host>>>path:hover {  opacity:0.9; }
-    :host>>>rect:hover {  fill:lightgrey; }
+    :host>>>.histRect:hover {  fill:lightgrey; }
     :host>>>.axis {  font: 10px sans-serif; }
-    :host>>>.legend tr{    border-bottom:1px solid grey; }
-    :host>>>.legend tr:first-child{    border-top:1px solid grey; }
-
+    
     :host>>>.axis path,
     :host>>>.axis line {
       fill: none;
@@ -37,6 +47,7 @@ declare var d3:any;
     :host>>>.x.axis path {  display: none; }
     :host>>>.histogram{
       border: 2px solid black;
+      display: block;
       margin-right: 20px;
     }
     :host>>>.legend{
@@ -44,34 +55,56 @@ declare var d3:any;
       border-collapse: collapse;
       border-spacing: 0px;
       color: black;
-      width: 500px;
-      height: 300px;
+      width: 260px;
+      height: 240px;
       font-weight: bold;
       font-size: 22px;
       border: 2px solid black;
+      border-right: none;
     }
-    :host>>>tr{
-      height: 100px;
+    :host>>>.legend tr{
+      height: 78px;
     }
-    :host>>>tr:first-child{
-      border-top: none;
-    }
-    :host>>>tr:last-child{
-      border-bottom: none;
-    }
-    :host>>>td{
-      padding:4px 5px;
+    
+    :host>>>.legend td{
+      padding:4px 0px;
+      padding-left: 10px;
       vertical-align:middle;
       color: black;
-      width: 125px;
-      text-align: center;
+      text-align: left;
+    }
+    :host>>>.tries{
+        width: 140px;
+    }
+    :host>>>.legendcount{
+        width: 80px;
     } 
+    :host>>>.legendPerc{
+        width: 80px
+    }
+    :host>>>.pieChart{
+      display: inline-block;
+      border: 2px solid black;
+      border-left: none;
+    }
     `
   ]
 })
 
 
 export class LogbookComponent implements OnInit {
+  
+  parentFilter: any = {
+      by: '',
+      value: ''
+  };
+  
+  @ViewChild(LogListComponent) child: LogListComponent;
+
+  updateFilter(value){
+    console.log('parent update',value)  
+    this.child.filterTable('Tries', 'Flash');
+  }
 
   constructor(private logbookService: LogbookService) { }
 
@@ -86,7 +119,7 @@ export class LogbookComponent implements OnInit {
     function histoGram(fD){
       
         var hG:{update:any} = {update:()=>{}}; 
-        var hGDim = {t: 60, r: 0, b: 30, l: -3, w:500, h:100};
+        var hGDim = {t: 30, r: 5, b: 30, l: 2, w:500, h:100};
         hGDim.w = 500 - hGDim.l - hGDim.r, 
         hGDim.h = 300 - hGDim.t - hGDim.b;
 
@@ -101,10 +134,13 @@ export class LogbookComponent implements OnInit {
         var x = d3.scale.ordinal().rangeRoundBands([0, hGDim.w], 0.1)
                 .domain(fD.map(function(d) { return d[0]; }));
 
+        var Vx = d3.scale.ordinal().rangeRoundBands([0, hGDim.w], 0.1)
+                .domain(fD.map(function(d) { return "V"+d[0]; }));
+
         // Add x-axis to the histogram svg.
         hGsvg.append("g").attr("class", "x axis")
             .attr("transform", "translate(0," + hGDim.h + ")")
-            .call(d3.svg.axis().scale(x).orient("bottom"));
+            .call(d3.svg.axis().scale(Vx).orient("bottom"));
 
         // Create function for y-axis map.
         var y = d3.scale.linear().range([hGDim.h, 0])
@@ -116,6 +152,7 @@ export class LogbookComponent implements OnInit {
         
         //create the rectangles.
         bars.append("rect")
+            .attr('class', 'histRect')
             .attr("x", function(d) { return x(d[0]); })
             .attr("y", function(d) { return y(d[1]); })
             .attr("width", x.rangeBand())
@@ -170,8 +207,8 @@ export class LogbookComponent implements OnInit {
     
     // function to handle pieChart.
     function pieChart(pD){
-        var pC:{update:any} = {update:""};    
-        var pieDim:{w:number; h:number; r:number} ={w:250, h: 250, r: 0};
+        var pC:{update:any} = {update:()=>{}};    
+        var pieDim:{w:number; h:number; r:number} ={w:240, h: 240, r: 0};
         pieDim.r = Math.min(pieDim.w, pieDim.h) / 2;
                 
         // create svg for pie chart.
@@ -190,7 +227,7 @@ export class LogbookComponent implements OnInit {
         piesvg.selectAll("path").data(pie(pD)).enter().append("path").attr("d", arc)
             .each(function(d) { this._current = d; })
             .style("fill", function(d) { return segColor(d.data.type); })
-            .on("mouseover",mouseover).on("mouseout",mouseout);
+            .on("mouseover",mouseover).on("mouseout",mouseout).on('click',click);
 
         // create function to update pie-chart. This will be used by histogram.
         pC.update = function(nD){
@@ -208,6 +245,10 @@ export class LogbookComponent implements OnInit {
             // call the update function of histogram with all data.
             hG.update(fData.map(function(v){
                 return [v.Grade,v.total];}), barColor);
+        }
+        //Utility function to be called on click a pie slice.
+        function click(d){
+            console.log(d.data.type)
         }
         // Animating the pie-slice requiring a custom function which specifies
         // how the intermediate paths should be drawn.
@@ -235,7 +276,8 @@ export class LogbookComponent implements OnInit {
 			      .attr("fill",function(d){ return segColor(d.type); });
             
         // create the second column for each segment.
-        tr.append("td").text(function(d){ return d.type;});
+        tr.append("td").attr("class","tries")
+            .text(function(d){ return d.type;});
 
         // create the third column for each segment.
         tr.append("td").attr("class",'legendcount')
@@ -272,16 +314,16 @@ export class LogbookComponent implements OnInit {
     // calculate total count by Grade for all segment.
     var sF = fData.map(function(d){return [d.Grade,d.total];});
 
-    var hG = histoGram(sF), // create the histogram.
-        leg= legend(tF),  // create the legend.
-        pC = pieChart(tF); // create the pie-chart.
+    var leg= legend(tF),  // create the legend.
+        pC = pieChart(tF), // create the pie-chart.
+        hG = histoGram(sF); // create the histogram.
   }
 
   ngOnInit() {
     this.logbookService.getLogbookTotals().subscribe(data => {
       this.dashboard('#dashboard',data);
     })
-
+    
   }
 
 }

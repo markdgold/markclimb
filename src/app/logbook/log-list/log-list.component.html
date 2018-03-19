@@ -1,0 +1,24 @@
+<table id="table-id">
+  <thead>
+    <tr>
+      <th (click)="filterTable('Tries', 'Flash')"></th>
+      <th (click)="sortBy('Name')">Name <i *ngIf="currentSort==='Name'" [class]="(currentSortOrder === 'desc') ? 'fa fa-chevron-down' : 'fa fa-chevron-up'"></i></th>
+      <th (click)="sortBy('Date')">Date <i *ngIf="currentSort==='Date'" [class]="(currentSortOrder === 'desc') ? 'fa fa-chevron-down' : 'fa fa-chevron-up'"></i></th>
+      <th (click)="sortBy('Grade')">Grade <i *ngIf="currentSort==='Grade'" [class]="(currentSortOrder === 'desc') ? 'fa fa-chevron-down' : 'fa fa-chevron-up'"></i></th>
+      <th (click)="sortBy('Location')">Location <i *ngIf="currentSort==='Location'" [class]="(currentSortOrder === 'desc') ? 'fa fa-chevron-down' : 'fa fa-chevron-up'"></i></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let entry of logBook | filterTicks:filter">
+      <td class="tries" [class]="entry.Tries">
+        <svg width="16" height="16">
+          <rect width="16" height="16"></rect>
+        </svg>
+      </td>
+      <td class="name">{{entry.Name}}</td>
+      <td class="date">{{entry.Date | date: "MM/dd/yy"}}</td>
+      <td class="grade">{{entry.Grade | verm}}</td>
+      <td class="location">{{entry.Location}}</td>
+    </tr>
+  </tbody>  
+  </table>
