@@ -36,5 +36,6 @@ export class NavBarComponent implements OnInit {
         $('div.header h1.desktop').css('padding-right', '7px');
       }
     )
+    $(".dropdown-button").dropdown();
   }
 }

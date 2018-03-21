@@ -20,7 +20,6 @@ export class FormatService {
   }
 
   sortTable(data, column, direction): Observable<[{}]>{
-    console.log(data);
     let sorted = data.sort((a,b)=>{
       let directionInt = (direction === "desc")? -1 : 1;
       

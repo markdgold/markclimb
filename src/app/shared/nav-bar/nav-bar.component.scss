@@ -18,11 +18,27 @@ $nav-height: 38px;
         letter-spacing: 7px;
         color: $offwhite;
       }
+      .dropdown-button{
+        position: relative;
+        right: 10px;
+        top: -7px;
+      }
       ul{
         background: $darkgrey;
         position: relative;
         top: -26px;
         transition: top .3s;
+        &.dropdown-content{
+          left: 175px !important;
+          width: 200px !important;
+          top: 38px !important;
+          box-shadow: none !important;          
+          li{
+            a{
+              top: 0px;
+            }
+          }
+        }
         &:before{
           content: '';
           position: absolute;
@@ -34,6 +50,15 @@ $nav-height: 38px;
         &.desktop:hover{
           top: 0px;
           li{
+            &.about{
+              width: 71px;
+            }
+            &.ig{
+              width: 96px;
+            }
+            &.vimeo{
+              width: 72px;
+            }
             a{
               top: 0px;
             }
@@ -41,15 +66,7 @@ $nav-height: 38px;
         }
         li{
           line-height: 60px;
-          &.about{
-            width: 71px;
-          }
-          &.ig{
-            width: 96px;
-          }
-          &.vimeo{
-            width: 72px;
-          }
+         
           a{
             border-top: 4px solid $darkgrey;
             transition: border-top .3s, top .3s, color .3s;
@@ -65,6 +82,9 @@ $nav-height: 38px;
               border-top: 4px solid $gold;
               color: $gold;
             }
+          }
+          &:hover{
+            background-color: rgba(0,0,0,0) !important;
           }
           a:hover{
             background-color: rgba(0,0,0,0) !important;

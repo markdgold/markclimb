@@ -18,6 +18,7 @@ export class LogListComponent implements OnInit {
     by: '',
     value: '',
   };
+  @Input() parentFilter;
 
   constructor(private logbookService: LogbookService, private formatService: FormatService) { }
 
@@ -30,8 +31,8 @@ export class LogListComponent implements OnInit {
   }
 
   filterTable(type, value){
-    this.filter.by = type;
-    this.filter.value = value;
+    this.parentFilter.by = type;
+    this.parentFilter.value = value;
     console.log('filtering')
   }
 

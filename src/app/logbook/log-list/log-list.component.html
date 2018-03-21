@@ -1,7 +1,7 @@
 <table id="table-id">
   <thead>
     <tr>
-      <th (click)="filterTable('Tries', 'Flash')"></th>
+      <th></th>
       <th (click)="sortBy('Name')">Name <i *ngIf="currentSort==='Name'" [class]="(currentSortOrder === 'desc') ? 'fa fa-chevron-down' : 'fa fa-chevron-up'"></i></th>
       <th (click)="sortBy('Date')">Date <i *ngIf="currentSort==='Date'" [class]="(currentSortOrder === 'desc') ? 'fa fa-chevron-down' : 'fa fa-chevron-up'"></i></th>
       <th (click)="sortBy('Grade')">Grade <i *ngIf="currentSort==='Grade'" [class]="(currentSortOrder === 'desc') ? 'fa fa-chevron-down' : 'fa fa-chevron-up'"></i></th>
@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let entry of logBook | filterTicks:filter">
+    <tr *ngFor="let entry of logBook | filterTicks:parentFilter">
       <td class="tries" [class]="entry.Tries">
         <svg width="16" height="16">
           <rect width="16" height="16"></rect>

@@ -35,7 +35,7 @@ declare var d3:any;
     }
     :host>>>path {  stroke: #fff; }
     :host>>>path:hover {  opacity:0.9; }
-    :host>>>.histRect:hover {  fill:lightgrey; }
+    :host>>>.histRect:hover {  fill:lightgrey; cursor:pointer }
     :host>>>.axis {  font: 10px sans-serif; }
     
     :host>>>.axis path,
@@ -87,6 +87,33 @@ declare var d3:any;
       border: 2px solid black;
       border-left: none;
     }
+    :host>>>.pieChart:hover{
+        cursor: pointer;
+    }
+    :host>>>#clear-button{
+        margin-top: 7px;
+        border: 2px solid black;
+        background: none;
+        color: black;
+        font-size: 18px;
+        font-weight: bolder;
+    }
+    @media(max-width: 1050px){
+        #bodyWrapper{
+            display: none;
+        }
+        #topFive{
+            display: inline-block;
+            width: 100%;
+            margin: 0 auto;
+            color: black;
+            text-align: center;
+        }
+        #topFive p{
+            font-size: 16px;
+            margin-top: 30px;
+        }
+    }
     `
   ]
 })
@@ -96,19 +123,21 @@ export class LogbookComponent implements OnInit {
   
   parentFilter: any = {
       by: '',
-      value: ''
+      value: '',
   };
-  
+
   @ViewChild(LogListComponent) child: LogListComponent;
 
-  updateFilter(value){
-    console.log('parent update',value)  
-    this.child.filterTable('Tries', 'Flash');
+  clearFilter(){
+    this.parentFilter.by = '';
+    this.parentFilter.value = '';
   }
 
-  constructor(private logbookService: LogbookService) { }
+  constructor(private logbookService: LogbookService) {
+      
+   }
 
-  dashboard(id, fData){
+  dashboard(id, fData, parentFilter){
     var barColor = '#3c3c3c';
     // compute total for each Grade.
     fData.forEach(function(d){d.total=d.count.Flash+d.count["Second Go"]+d.count.Redpoint;});
@@ -159,7 +188,8 @@ export class LogbookComponent implements OnInit {
             .attr("height", function(d) { return hGDim.h - y(d[1]); })
             .attr('fill',barColor)
             .on("mouseover",mouseover)// mouseover is defined beFlash.
-            .on("mouseout",mouseout);// mouseout is defined beFlash.
+            .on("mouseout",mouseout)// mouseout is defined beFlash.
+            .on("click", click);
             
         //Create the count labels above the rectangles.
         bars.append("text").text(function(d){ return d3.format(",")(d[1])})
@@ -179,10 +209,22 @@ export class LogbookComponent implements OnInit {
         
         function mouseout(d){    // utility function to be called on mouseout.
             // reset the pie-chart and legend.    
-            pC.update(tF);
-            leg.update(tF);
+            if(parentFilter.by === ''){ // if not filter, reset with full data
+                pC.update(tF);
+                leg.update(tF);
+            } else { // else if filter, reset with filtered data
+                var st = fData.filter(function(s){ return s.Grade == parentFilter.value;})[0],
+                    nD = d3.keys(st.count).map(function(s){ return {type:s, count:st.count[s]};});
+                    pC.update(nD);
+                    leg.update(nD);
+            }
         }
         
+        function click(d){
+            parentFilter.by = "Grade";
+            parentFilter.value = d[0];
+            cL.showButton();
+        }
         // create function to update the bars. This will be used by pie-chart.
         hG.update = function(nD, color){
             // update the domain of the y-axis map to reflect change in grades.
@@ -242,13 +284,21 @@ export class LogbookComponent implements OnInit {
         }
         //Utility function to be called on mouseout a pie slice.
         function mouseout(d){
-            // call the update function of histogram with all data.
-            hG.update(fData.map(function(v){
-                return [v.Grade,v.total];}), barColor);
+            // call the update function of histogram.
+            if(parentFilter.by === ''){
+                hG.update(fData.map(function(v){
+                    return [v.Grade,v.total];}), barColor);
+            } else {
+                hG.update(fData.map(function(v){
+                    return [v.Grade,v.count[parentFilter.value]];}),segColor(parentFilter.value));
+                
+            }
         }
         //Utility function to be called on click a pie slice.
         function click(d){
-            console.log(d.data.type)
+            parentFilter.by = "Tries";
+            parentFilter.value = d.data.type;
+            cL.showButton();
         }
         // Animating the pie-slice requiring a custom function which specifies
         // how the intermediate paths should be drawn.
@@ -306,6 +356,22 @@ export class LogbookComponent implements OnInit {
         return leg;
     }
     
+    function clearButton(){
+        var button = d3.select(id).append("button").attr('id','clear-button').style('display','none').text('Reset Filters').on('click', clearFilter);
+        var cL:{showButton:any} = {showButton:()=>{button.style('display', 'block')}}; 
+        
+        function clearFilter(){
+            parentFilter.by = '';
+            parentFilter.value = '';
+            pC.update(tF);
+            leg.update(tF);
+            hG.update(fData.map(function(v){
+                return [v.Grade,v.total];}), barColor);
+            button.style('display','none');
+        }
+        return cL;
+    }
+
     // calculate total count by segment for all Grade.
     var tF = ['Flash','Second Go','Redpoint'].map(function(d){ 
       return {type:d, count: d3.sum(fData.map(function(t){ return t.count[d];}))}; 
@@ -316,12 +382,13 @@ export class LogbookComponent implements OnInit {
 
     var leg= legend(tF),  // create the legend.
         pC = pieChart(tF), // create the pie-chart.
-        hG = histoGram(sF); // create the histogram.
+        hG = histoGram(sF), // create the histogram.
+        cL = clearButton(); //create the clear button.
   }
 
   ngOnInit() {
     this.logbookService.getLogbookTotals().subscribe(data => {
-      this.dashboard('#dashboard',data);
+      this.dashboard('#dashboard',data, this.parentFilter);
     })
     
   }

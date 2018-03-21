@@ -4,8 +4,8 @@ table{
     display: block;
     th{
       padding: 10px 10px;
-      &.bold{
-        text-decoration: underline;
+      &:hover{
+        cursor: pointer;
       }
     }
     th:nth-of-type(1){

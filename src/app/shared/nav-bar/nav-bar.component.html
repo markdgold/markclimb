@@ -2,7 +2,22 @@
   <nav>
     <div class="nav-wrapper">
       <span class="brand-logo">MDG</span>
-      <ul class="right" [class.desktop]="!isMobile">
+      <span href="#" data-activates="dropdown1" class="dropdown-button right hide-on-med-and-up"><i class="fa fa-bars "></i></span>
+      <ul class="right desktop hide-on-med-and-down">
+        <li routerLinkActive="active" class="about">
+          <a [routerLink]="['/about']">About</a>
+        </li>
+        <li routerLinkActive="active" class="ig">
+          <a [routerLink]="['/instagram']">Instagram</a>
+        </li>
+        <li routerLinkActive="active" class="vimeo">
+          <a [routerLink]="['/vimeo']">Vimeo</a>
+        </li>
+        <li routerLinkActive="active" class="logbook">
+          <a [routerLink]="['/logbook']">Logbook</a>
+        </li>
+      </ul>
+      <ul class="dropdown-content" id="dropdown1" >
         <li routerLinkActive="active" class="about">
           <a [routerLink]="['/about']">About</a>
         </li>
