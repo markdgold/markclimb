@@ -33,6 +33,9 @@ declare var d3:any;
         width: 500px;
         float: right;
     }
+    #topFive{
+        display: none;
+    }
     :host>>>path {  stroke: #fff; }
     :host>>>path:hover {  opacity:0.9; }
     :host>>>.histRect:hover {  fill:lightgrey; cursor:pointer }
@@ -199,12 +202,15 @@ export class LogbookComponent implements OnInit {
         
         function mouseover(d){  // utility function to be called on mouseover.
             // filter for selected Grade.
-            var st = fData.filter(function(s){ return s.Grade == d[0];})[0],
+            console.log(parentFilter);
+            if(parentFilter.by !=="Tries"){
+                var st = fData.filter(function(s){ return s.Grade == d[0];})[0],
                 nD = d3.keys(st.count).map(function(s){ return {type:s, count:st.count[s]};});
-               
-            // call update functions of pie-chart and legend.    
-            pC.update(nD);
-            leg.update(nD);
+                
+                // call update functions of pie-chart and legend.    
+                pC.update(nD);
+                leg.update(nD);
+            }
         }
         
         function mouseout(d){    // utility function to be called on mouseout.
@@ -212,21 +218,25 @@ export class LogbookComponent implements OnInit {
             if(parentFilter.by === ''){ // if not filter, reset with full data
                 pC.update(tF);
                 leg.update(tF);
-            } else { // else if filter, reset with filtered data
-                var st = fData.filter(function(s){ return s.Grade == parentFilter.value;})[0],
-                    nD = d3.keys(st.count).map(function(s){ return {type:s, count:st.count[s]};});
-                    pC.update(nD);
-                    leg.update(nD);
+            } 
+            else if (parentFilter.by === 'Grade') { // else if grade filtered, reset with filtered data
+                var stFilter = fData.filter(function(s){ return s.Grade == parentFilter.value;})[0],
+                    nDFilter = d3.keys(stFilter.count).map(function(s){ return {type:s, count:stFilter.count[s]};});
+                    pC.update(nDFilter);
+                    leg.update(nDFilter);
             }
         }
         
         function click(d){
-            parentFilter.by = "Grade";
-            parentFilter.value = d[0];
-            cL.showButton();
+            if(parentFilter.by !== 'Tries'){
+                parentFilter.by = "Grade";
+                parentFilter.value = d[0];
+                cL.showButton();
+            }
         }
         // create function to update the bars. This will be used by pie-chart.
         hG.update = function(nD, color){
+            console.log('hg update')
             // update the domain of the y-axis map to reflect change in grades.
             y.domain([0, d3.max(nD, function(d) { return d[1]; })]);
             
@@ -279,8 +289,10 @@ export class LogbookComponent implements OnInit {
         // Utility function to be called on mouseover a pie slice.
         function mouseover(d){
             // call the update function of histogram with new data.
-            hG.update(fData.map(function(v){ 
-                return [v.Grade,v.count[d.data.type]];}),segColor(d.data.type));
+            if(parentFilter.by !== 'Grade'){
+                hG.update(fData.map(function(v){ 
+                    return [v.Grade,v.count[d.data.type]];}),segColor(d.data.type));
+            }
         }
         //Utility function to be called on mouseout a pie slice.
         function mouseout(d){
@@ -288,17 +300,18 @@ export class LogbookComponent implements OnInit {
             if(parentFilter.by === ''){
                 hG.update(fData.map(function(v){
                     return [v.Grade,v.total];}), barColor);
-            } else {
-                hG.update(fData.map(function(v){
+            } else if (parentFilter.by === 'Tries'){
+                hG.update(fData.map(function(v){ 
                     return [v.Grade,v.count[parentFilter.value]];}),segColor(parentFilter.value));
-                
             }
         }
         //Utility function to be called on click a pie slice.
         function click(d){
-            parentFilter.by = "Tries";
-            parentFilter.value = d.data.type;
-            cL.showButton();
+            if(parentFilter.by !== 'Grade'){
+                parentFilter.by = "Tries";
+                parentFilter.value = d.data.type;
+                cL.showButton();
+            }
         }
         // Animating the pie-slice requiring a custom function which specifies
         // how the intermediate paths should be drawn.
