@@ -2,7 +2,11 @@
 
 Bouldering profile for Mark Goldstein. Visually stimulating home page with subtle animation effects, social media pages: Instagram feed, Vimeo feed, and logbook analytics dashboard.
 
+[deployed here](https://mark-climb.firebaseapp.com)
+
 Built using Angular 5, Node.js, Instagram API, Vimeo API, and D3.js
+
+Requires globals.ts file with Instagram and Vimeo API keys to run.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
 
