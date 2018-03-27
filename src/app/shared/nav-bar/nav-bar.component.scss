@@ -20,7 +20,7 @@ $nav-height: 38px;
       }
       .dropdown-button{
         position: relative;
-        right: 10px;
+        right: 15px;
         top: -7px;
       }
       ul{
@@ -29,7 +29,7 @@ $nav-height: 38px;
         top: -26px;
         transition: top .3s;
         &.dropdown-content{
-          left: 175px !important;
+          left: 220px !important;
           width: 200px !important;
           top: 38px !important;
           box-shadow: none !important;          
@@ -43,7 +43,7 @@ $nav-height: 38px;
           content: '';
           position: absolute;
           top: $nav-height - 1;
-          right: 327px;
+          right: 239px;
           border-top: 27px solid $darkgrey;
           border-left: 45px solid transparent;
         }

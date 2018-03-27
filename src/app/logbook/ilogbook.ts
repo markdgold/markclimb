@@ -1,5 +1,5 @@
-export interface Igradebook {
-  Grade:string,
+export interface IGradeCount {
+  Grade:number,
   count: {
     Flash:number,
     "Second Go":number,
@@ -7,10 +7,12 @@ export interface Igradebook {
   }
 }
 
-export interface ILogbook {
+export interface IClimb {
+  Id: string,
   Name: string,
   Grade: number,
   Location: string,
   Date: Date,
   Tries: string,
+  Commment: string
 }

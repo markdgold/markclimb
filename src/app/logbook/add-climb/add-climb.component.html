@@ -1,0 +1,18 @@
+<div id="adder" style="width: 300px; position:absolute; top: 110px; color: black; background: white; border: 2px solid black; font-weight: bolder; left: 80px">
+    <input type="text" [(ngModel)]="Name" name="Name" placeholder="Name">
+    <input type="number" [(ngModel)]="Grade" name="Grade" placeholder="Grade">
+    <input type="text" [(ngModel)]="Location" name="Location" placeholder="Location">
+    <input type="date" [(ngModel)]="Date" name="Date" placeholder="Date">
+    <input type="text" [(ngModel)]="Tries" name="Tries" placeholder="Tries">
+    <select name="Tries" [(ngModel)]="Tries" id="">
+      <option value="Flash">Flash</option>
+      <option value="Second Go">Second Go</option>
+      <option value="Redpoint">Redpoint</option>
+    </select>
+    <input type="textArea" [(ngModel)]="Comment" name="Comment" placeholder="Comment">
+    <input type="submit" value="Add Climb" (click)="addClimb(Name, Grade, Date, Location, Tries, Comment)">
+    
+    <!-- <input type="text" [(ngModel)]='climb' name='climb'>
+    <input type="submit" value="Add Climb" (click)="addClimbJSON(climb)"> -->
+
+  </div>

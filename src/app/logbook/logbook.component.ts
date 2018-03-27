@@ -136,9 +136,7 @@ export class LogbookComponent implements OnInit {
     this.parentFilter.value = '';
   }
 
-  constructor(private logbookService: LogbookService) {
-      
-   }
+  constructor(private logbookService: LogbookService) { }
 
   dashboard(id, fData, parentFilter){
     var barColor = '#3c3c3c';
@@ -403,7 +401,6 @@ export class LogbookComponent implements OnInit {
     this.logbookService.getLogbookTotals().subscribe(data => {
       this.dashboard('#dashboard',data, this.parentFilter);
     })
-    
   }
 
 }

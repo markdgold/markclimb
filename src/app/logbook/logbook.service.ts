@@ -1,21 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore'
 
-import {Igradebook, ILogbook} from './ilogbook';
+import {IGradeCount, IClimb} from './ilogbook';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+export const firebaseConfig = {
+
+}
+
 @Injectable()
 export class LogbookService {
-  private url:string = "../../assets/logbook.json";
+  constructor(private http: Http, private afs: AngularFirestore) {  }
 
-  constructor(private http: Http) { }
-
-  getLogbookTotals(): Observable<any>{
-    return this.http.get(this.url)
+  getLogbookTotals(): Observable<IGradeCount[]>{
+    let climbsCol: AngularFirestoreCollection<IClimb>= this.afs.collection('climbs');
+    let climbs: Observable<IClimb[]> = climbsCol.valueChanges();
+    return climbs
       .map(data => {
         let totals = [
           {"Grade":2,"count":{"Flash":0, "Second Go":0, "Redpoint":0}}
@@ -30,14 +35,29 @@ export class LogbookService {
           ,{"Grade":11,"count":{"Flash":0, "Second Go":0, "Redpoint":0}}
           ,{"Grade":12,"count":{"Flash":0, "Second Go":0, "Redpoint":0}}
         ]
-        data.json().Logbook.forEach(entry=>{
+        data.forEach(entry=>{
           totals[entry.Grade-2].count[entry.Tries] +=1;
         })
         return totals;
-      })
+    })
   }
 
-  getLogbook(): Observable<ILogbook[]>{
-    return this.http.get(this.url).map(data => {return data.json().Logbook})
+  getLogbook(): Observable<IClimb[]>{
+    let climbsCol: AngularFirestoreCollection<IClimb>= this.afs.collection('climbs');
+    let climbs: any = climbsCol.snapshotChanges()
+      .map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data() as IClimb;
+            data.Id = a.payload.doc.id;
+          return data;
+        })
+      })
+    return climbs
   }
+
+  addClimb(name, grade, location, date, tries, comment) {
+    this.afs.collection('climbs').add({'Name': name, 'Grade': grade, 'Location': location, 'Date': date, 'Tries': tries, 'Comment': comment})
+  }
+  //TODO add edit climb
+  //TODO add delete climb
 }
