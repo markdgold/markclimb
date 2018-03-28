@@ -1,0 +1,130 @@
+#add-modal{
+  width: 100%; 
+  position:absolute; 
+  top: 130px; 
+  color: black; 
+  left: 0px;
+  form{
+    background: #fefff6; 
+    border: 2px solid black; 
+    width: 300px;
+    margin: 0 auto;
+    .form-content{
+      font-weight: bolder; 
+      width: 90%;
+      margin: 10px auto;
+      margin-top: 32px;
+      .input-field{
+        input, textarea{
+          &.valid{
+            box-shadow: none;
+            border-bottom: 1px solid #9e9e9e;
+          }
+          &:focus{
+            &.invalid{
+              &+label{
+                color: #F44336
+              }
+            }
+            &+label{
+              color: goldenrod;
+            }
+            &:not(.invalid){
+              box-shadow:none;
+              border-bottom: 1px solid goldenrod;
+            }
+          }
+        }
+        label{
+          &.active{
+            transform: translateY(-14px) scale(0.9) !important;
+            transform-origin: 0 0;
+          }
+        }
+        #comment{
+          padding: 0px;
+        }
+      }
+      #date, #tries{
+        position: relative;
+        color: #9e9e9e;
+        span{
+          position: absolute;
+          top: -14px;
+          font-size: 13px;
+        }
+      }
+      #date{
+        #date-picker{
+          transition: all 0.3s;
+          &:focus{
+            border-bottom: 1px solid goldenrod;
+            box-shadow: none;
+            &+span{
+              color: goldenrod;
+            }
+            &.ng-touched.ng-invalid{
+              &+span{
+                color: #F44336;
+              }
+            }
+          }
+          &.ng-touched.ng-invalid{
+            box-shadow: 0 1px 0 0 #F44336;
+            border-bottom: 1px solid #F44336;
+          }
+        }
+      }
+      #tries{
+        margin-top: 1rem;
+        select{
+          background: none;
+          border: none;
+          border-bottom: 1px solid #9e9e9e;
+          padding-left: 0px;
+          color: black;
+          &:focus{
+            outline: none;
+            border-bottom: 1px solid goldenrod;
+            &+span{
+              color: goldenrod;
+            }
+            &.ng-touched.ng-invalid{
+              &+span{
+                color: #F44336;
+              }
+            }
+          }
+          &.ng-touched.ng-invalid{
+            box-shadow: 0 1px 0 0 #F44336;
+            border-bottom: 1px solid #F44336;
+          }
+        }
+      }
+      #comment{
+        margin-top: 35px;
+        textarea{
+          padding: 0px;
+          padding-top: 12px;
+        }
+      }
+      select{
+        display: block !important;
+      }
+      .buttons{
+        div{
+          display: inline-block;
+          width: 49%;
+          button, div{
+            background: none;
+            width: 100%;
+            border: 1px solid black;
+            cursor: pointer;
+            padding: 1px 6px;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}

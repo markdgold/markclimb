@@ -1,18 +1,42 @@
-<div id="adder" style="width: 300px; position:absolute; top: 110px; color: black; background: white; border: 2px solid black; font-weight: bolder; left: 80px">
-    <input type="text" [(ngModel)]="Name" name="Name" placeholder="Name">
-    <input type="number" [(ngModel)]="Grade" name="Grade" placeholder="Grade">
-    <input type="text" [(ngModel)]="Location" name="Location" placeholder="Location">
-    <input type="date" [(ngModel)]="Date" name="Date" placeholder="Date">
-    <input type="text" [(ngModel)]="Tries" name="Tries" placeholder="Tries">
-    <select name="Tries" [(ngModel)]="Tries" id="">
-      <option value="Flash">Flash</option>
-      <option value="Second Go">Second Go</option>
-      <option value="Redpoint">Redpoint</option>
-    </select>
-    <input type="textArea" [(ngModel)]="Comment" name="Comment" placeholder="Comment">
-    <input type="submit" value="Add Climb" (click)="addClimb(Name, Grade, Date, Location, Tries, Comment)">
-    
-    <!-- <input type="text" [(ngModel)]='climb' name='climb'>
-    <input type="submit" value="Add Climb" (click)="addClimbJSON(climb)"> -->
-
+<div id="add-modal">
+      <form (ngSubmit)="submitForm()" [formGroup]="addForm" novalidate>
+        <div class="form-content">
+          <div class="input-field">
+            <input required type="text" id="name" class="sd-form-control validate" formControlName="Name">
+            <label for="name">Name</label>
+          </div>
+          <div class="input-field">
+            <input required type="number" id="grade" min="2" class="sd-form-control validate" formControlName="Grade">
+            <label for="grade">Grade</label>
+          </div>
+          <div class="input-field">
+            <input required type="text" id="location" class="sd-form-control validate" formControlName="Location">
+            <label for="location">Location</label>
+          </div>
+          <div id="date" class="input-field">
+            <input required type="date" id="date-picker" class="sd-form-control" formControlName="Date">
+            <span>Date</span>
+          </div>
+          <div id="tries">
+            <select required type="text" id="tries" class="sd-form-control browser-default validate" formControlName="Tries">
+              <option *ngFor="let try of triesOptions" [value]="try">
+                {{try}}
+              </option>
+            </select>
+            <span>Attempts</span>
+          </div>
+          <div id="comment" class="input-field">
+            <textarea required id="commentArea" formControlName="Comment" class="sd-form-control materialize-textarea validate"></textarea>
+            <label for="commentArea">Comment</label>
+          </div>
+          <div class="buttons">
+            <div class="form-submit">
+              <button type="submit">Add Climb</button>
+            </div>
+            <div class="cancel">
+              <div (click)="closeModal()">Cancel</div>
+            </div>
+          </div>
+        </div>
+      </form>
   </div>

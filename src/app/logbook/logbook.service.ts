@@ -56,7 +56,7 @@ export class LogbookService {
   }
 
   addClimb(name, grade, location, date, tries, comment) {
-    this.afs.collection('climbs').add({'Name': name, 'Grade': grade, 'Location': location, 'Date': date, 'Tries': tries, 'Comment': comment})
+    this.afs.collection('climbs').add({'Name': name, 'Grade': grade, 'Location': location, 'Date': date, 'Tries': tries, 'Comment': comment});
   }
   //TODO add edit climb
   //TODO add delete climb

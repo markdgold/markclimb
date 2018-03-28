@@ -26,12 +26,13 @@ table{
   }
   tbody{
     display: block;
-    height: 501px;
+    height: 460px;
     overflow-y: scroll;
     color: black;
     tr{
       td{
         padding: 5px 10px;
+        font-weight: bold;
       }
       .Flash{
         fill: #E89C04
@@ -55,5 +56,23 @@ table{
         width: 113px;
       }
     }
+  }
+}
+button{
+  background: none; 
+  border: 1px solid #d0d0d0;
+  border-bottom: 0px;
+  padding: 9px 0px;
+  width: 248px;
+  color: black; 
+  font-weight: bolder;
+  &.add{
+    border-left: none;
+  }
+  &.edit{
+    border-right: none;
+    border-left: none;
+    margin-left: -4px;
+    margin-right: -2px
   }
 }

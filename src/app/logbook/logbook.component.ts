@@ -3,6 +3,7 @@ import { LogbookService } from './logbook.service';
 import { LogListComponent } from './log-list/log-list.component';
 
 declare var d3:any;
+declare var $:any;
 
 @Component({
   selector: 'mdg-logbook',
@@ -399,7 +400,13 @@ export class LogbookComponent implements OnInit {
 
   ngOnInit() {
     this.logbookService.getLogbookTotals().subscribe(data => {
-      this.dashboard('#dashboard',data, this.parentFilter);
+        if ($('#dashboard').children().length> 0){
+            $('.legend').remove();
+            $('.pieChart').remove();
+            $('.histogram').remove();
+            $('#clear-button').remove();
+        }
+        this.dashboard('#dashboard', data, this.parentFilter);
     })
   }
 
