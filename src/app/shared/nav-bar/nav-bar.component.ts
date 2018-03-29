@@ -30,7 +30,7 @@ export class NavBarComponent implements OnInit {
     })
     $('ul.right').hover( //fix this
       ()=>{
-        $('div.header h1.desktop').css('padding-right', '56px');
+        $('div.header h1.desktop').css('padding-right', '146px');
       },
       ()=>{
         $('div.header h1.desktop').css('padding-right', '7px');

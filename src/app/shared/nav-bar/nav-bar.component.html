@@ -1,7 +1,7 @@
 <div class="navbar-fixed" [style.position]="isAbout ? 'fixed' : 'relative'">
   <nav>
     <div class="nav-wrapper">
-      <span class="brand-logo">MDG</span>
+      <span class="brand-logo" ><a [routerLink]="['/']">MDG</a></span>
       <span href="#" data-activates="dropdown1" class="dropdown-button right hide-on-med-and-up"><i class="fa fa-bars "></i></span>
       <ul class="right desktop hide-on-med-and-down">
         <li routerLinkActive="active" class="about">
@@ -13,9 +13,9 @@
         <li routerLinkActive="active" class="vimeo">
           <a [routerLink]="['/vimeo']">Vimeo</a>
         </li>
-        <!-- <li routerLinkActive="active" class="logbook">
+        <li routerLinkActive="active" class="logbook">
           <a [routerLink]="['/logbook']">Logbook</a>
-        </li> -->
+        </li>
       </ul>
       <ul class="dropdown-content" id="dropdown1" >
         <li routerLinkActive="active" class="about">
@@ -27,9 +27,9 @@
         <li routerLinkActive="active" class="vimeo">
           <a [routerLink]="['/vimeo']">Vimeo</a>
         </li>
-        <!-- <li routerLinkActive="active" class="logbook">
+        <li routerLinkActive="active" class="logbook">
           <a [routerLink]="['/logbook']">Logbook</a>
-        </li> -->
+        </li>
       </ul>
     </div>
   </nav>
