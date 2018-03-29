@@ -10,7 +10,7 @@
   height: 100%;
   
   &.active{
-    z-index: 20;
+    z-index: 200;
     .modal-container{
       iframe{
         transform: scale(1);
