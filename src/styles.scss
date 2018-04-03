@@ -18,3 +18,12 @@ html, body{
 .row{
   margin-bottom: 0px;
 }
+
+.button{
+    background: none;
+    border: 1px solid black;
+    cursor: pointer;
+    padding: 1px 6px;
+    text-align: center;
+    font-weight: bold;
+}

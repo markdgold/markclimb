@@ -13,7 +13,10 @@
     <h4>SOBO | V11</h4>
     <h4>King Swing Low | V10</h4>
     <h4>Cotton Pony | V10</h4>
+    <h4>Equinox | V10</h4>
     <p>View on Desktop for full list</p>
+    <button class="button" (click)="toggleAddClimb()">Add Climb</button>
+    <add-climb *ngIf="addClimbVisible" @toggleModal (onCloseModal)="toggleAddClimb()"></add-climb>
   </div>
 
 </div>

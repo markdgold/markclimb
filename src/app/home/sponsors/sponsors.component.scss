@@ -6,6 +6,7 @@
   margin-bottom: 50px;
   .container{
     height: 100%;
+    width: 640px;
     div{
       margin: 0 auto;
       h1{
@@ -20,10 +21,12 @@
         a{
           img{
             width: 637px;
-            display: block;
             padding: 10px;
             &.beast{
               background: white;
+            }
+            &.tree{
+              width: 418px;
             }
           }
         }
@@ -35,6 +38,7 @@
 @media (max-width: 800px) {
   .sponsors{
     .container{
+      width: 95%;
       div{
         h1{
           font-size: 42px;
@@ -44,8 +48,13 @@
             img{
               width: 100px;
               height: 100px;
+              display: block;
               &.beast{
                 border-radius: 70px;
+              }
+              &.tree{
+                height: 90px;
+                width: 100px;
               }
             }
           }

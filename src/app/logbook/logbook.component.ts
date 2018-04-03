@@ -37,6 +37,9 @@ declare var $:any;
     #topFive{
         display: none;
     }
+    .button {
+        width: 110px;
+    }
     :host>>>path {  stroke: #fff; }
     :host>>>path:hover {  opacity:0.9; }
     :host>>>.histRect:hover {  fill:lightgrey; cursor:pointer }
@@ -129,6 +132,11 @@ export class LogbookComponent implements OnInit {
       by: '',
       value: '',
   };
+  addClimbVisible: boolean = false;
+
+  toggleAddClimb(){
+    this.addClimbVisible = !this.addClimbVisible;
+  }
 
   @ViewChild(LogListComponent) child: LogListComponent;
 

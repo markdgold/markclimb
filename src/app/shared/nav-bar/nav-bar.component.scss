@@ -22,6 +22,10 @@ $nav-height: 38px;
         position: relative;
         right: 15px;
         top: -7px;
+        .fa-bars{
+          font-size: 18px;
+        }
+        
       }
       ul{
         background: $darkgrey;
