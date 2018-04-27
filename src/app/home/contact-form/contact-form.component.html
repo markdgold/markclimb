@@ -3,8 +3,9 @@
   <button (click)="showForm()" class="contact-btn btn btn-success" *ngIf="!formVisible && !isMobile">Contact Mark</button>
   <a class="contact-btn-mobile btn btn-success" href="mailto:mgoldstein@utexas.edu" *ngIf="isMobile">Contact Mark</a> 
   <form class="row" [formGroup]="contactForm" (ngSubmit)='onSubmit()' [@formVisible]="formVisible">
+  <!-- <form class="row" [formGroup]="contactForm" accept-charset="UTF-8" action="https://usebasin.com/f/1272f2bf6320" method="POST" [@formVisible]="formVisible"> -->
     <div class="form-group col s6 name-group">
-      <label class="center-block" >Name:
+      <label class="center-block">Name:
         <span *ngIf="name.errors && (name.dirty || name.touched)">*</span>
         <input id="name" type="text" formControlName="name" class="form-control">
       </label>
@@ -12,7 +13,7 @@
     <div class="form-group col s6 email-group">
       <label class="center-block">Email: 
         <span *ngIf="email.errors && (email.dirty || email.touched)">* Must be valid email</span>
-        <input type="text" formControlName="email" class="form-control">
+        <input type="text" id="email" formControlName="email" class="form-control">
       </label>
     </div>
     <div class="form-group col s12">
