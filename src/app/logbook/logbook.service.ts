@@ -22,6 +22,7 @@ export class LogbookService {
     let climbs: Observable<IClimb[]> = climbsCol.valueChanges();
     return climbs
       .map(data => {
+        console.log(data);
         let totals = [
           {"Grade":2,"count":{"Flash":0, "Second Go":0, "Redpoint":0}}
           ,{"Grade":3,"count":{"Flash":0, "Second Go":0, "Redpoint":0}}
