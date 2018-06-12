@@ -407,6 +407,7 @@ export class LogbookComponent implements OnInit {
             $('#clear-button').remove();
         }
         this.dashboard('#dashboard', data, this.parentFilter);
+        console.log(data);
     })
   }
 
