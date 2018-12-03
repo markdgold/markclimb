@@ -59,11 +59,6 @@ export class LogListComponent implements OnInit {
     })
   }
 
-  filterTable(type, value){
-    this.parentFilter.by = type;
-    this.parentFilter.value = value;
-  }
-
   toggleAddClimb(){
     this.addClimbVisible = !this.addClimbVisible;
   }

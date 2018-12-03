@@ -1,18 +1,19 @@
 <div class="full-height">
-  <h1>Mark's Ascents</h1>
+  <h1>Mark's Ascents {{parentFilter.by}}</h1>
   <div id="bodyWrapper">
     <div id="dashboard"></div>
     <div class="log-list">
       <log-list [parentFilter]="parentFilter" ></log-list>
     </div>
+    <!-- <add-climb></add-climb> -->
   </div>
 
   <div id="topFive">
     <h3>Top 5</h3>
     <h4>Squaminator | V12</h4>
+    <h4>Fata Morgana | V11</h4>
     <h4>SOBO | V11</h4>
     <h4>King Swing Low | V10</h4>
-    <h4>Resurrection Low | V10/11</h4>
     <h4>Cotton Pony Sit | V11/12</h4>
     <p>View on Desktop for full list</p>
   </div>

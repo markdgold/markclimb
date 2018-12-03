@@ -19,15 +19,15 @@ export class AddClimbComponent implements OnInit {
     if(this.addForm.valid === true){
       this.logbookService.addClimb(this.addForm.value.Name, this.addForm.value.Grade, this.addForm.value.Location, Date.parse(this.addForm.value.Date), this.addForm.value.Tries, this.addForm.value.Comment)      
       this.addForm.reset();
-      this.closeModal;
+      // this.closeModal;
     } else {
       this.invalidForm = true;
     }
   }
   
-  closeModal(e){
-    this.onCloseModal.emit(false);
-  }
+  // closeModal(e){
+  //   this.onCloseModal.emit(false);
+  // }
 
   constructor(private logbookService: LogbookService, private formBuilder: FormBuilder) { }
 
@@ -41,5 +41,5 @@ export class AddClimbComponent implements OnInit {
       Comment:    ['', Validators.required]
     })
   }
-  @Output() onCloseModal = new EventEmitter<boolean>();
+  // @Output() onCloseModal = new EventEmitter<boolean>();
 }

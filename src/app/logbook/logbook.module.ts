@@ -31,6 +31,7 @@ export const firebaseConfig = {
     CommonModule,
     RouterModule.forChild([
       {path: '', component: LogbookComponent},
+      {path: 'add', component: AddClimbComponent}
     ]),
     SharedModule,
     AngularFireModule.initializeApp(firebaseConfig),

@@ -1,0 +1,41 @@
+[debug] [2018-11-06T20:41:11.907Z] ----------------------------------------------------------------------
+[debug] [2018-11-06T20:41:11.908Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2018-11-06T20:41:11.908Z] CLI Version:   3.18.4
+[debug] [2018-11-06T20:41:11.908Z] Platform:      darwin
+[debug] [2018-11-06T20:41:11.908Z] Node Version:  v8.11.1
+[debug] [2018-11-06T20:41:11.909Z] Time:          Tue Nov 06 2018 14:41:11 GMT-0600 (CST)
+[debug] [2018-11-06T20:41:11.909Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-11-06T20:41:11.919Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-11-06T20:41:11.920Z] > authorizing via signed-in user
+[debug] [2018-11-06T20:41:11.921Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/mark-climb  
+  
+ Tue Nov 06 2018 14:41:11 GMT-0600 (CST)
+[debug] [2018-11-06T20:41:12.259Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-06T20:41:12.260Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/mark-climb/tokens  
+  
+ Tue Nov 06 2018 14:41:12 GMT-0600 (CST)
+[debug] [2018-11-06T20:41:12.587Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'mark-climb'...
+[info] 
+[info] i  deploying hosting
+[info] i  hosting: preparing dist directory for upload...
+[debug] [2018-11-06T20:41:16.364Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/mark-climb/uploads/-LQekUaY1NhMzCKqc9rq?fileCount=73&message=  
+  
+ Tue Nov 06 2018 14:41:16 GMT-0600 (CST)
+[debug] [2018-11-06T20:48:52.819Z] <<< HTTP RESPONSE 410
+[debug] [2018-11-06T20:48:52.819Z] <<< HTTP RESPONSE BODY undefined
+[debug] [2018-11-06T20:48:52.821Z] TypeError: Cannot read property 'error' of undefined
+    at module.exports (/usr/local/lib/node_modules/firebase-tools/lib/responseToError.js:10:13)
+    at Request._callback (/usr/local/lib/node_modules/firebase-tools/lib/api.js:47:25)
+    at Request.self.callback (/usr/local/lib/node_modules/firebase-tools/node_modules/request/request.js:186:22)
+    at emitTwo (events.js:126:13)
+    at Request.emit (events.js:214:7)
+    at Request.<anonymous> (/usr/local/lib/node_modules/firebase-tools/node_modules/request/request.js:1163:10)
+    at emitOne (events.js:116:13)
+    at Request.emit (events.js:211:7)
+    at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/firebase-tools/node_modules/request/request.js:1085:12)
+    at Object.onceWrapper (events.js:313:30)
+[error] 
+[error] Error: An unexpected error has occurred.
